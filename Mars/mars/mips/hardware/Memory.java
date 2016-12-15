@@ -409,7 +409,13 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
                Exceptions.ADDRESS_EXCEPTION_STORE, address);
          }
          notifyAnyObservers(AccessNotice.WRITE, address, length, value);
-         SystemIO.printString("*" + Binary.intToHexString(address).substring(2) + " <= " + Binary.intToHexString(value).substring(2) + "\n");
+		 int lf;
+		 if (length == 4)
+			lf = 2;
+		 else if (length == 2)
+			lf = 6;
+		 else lf = 8;
+         SystemIO.printString("*" + Binary.intToHexString(address).substring(2) + " <= " + Binary.intToHexString(value).substring(lf) + "\n");
          return oldValue;
       }
    	
